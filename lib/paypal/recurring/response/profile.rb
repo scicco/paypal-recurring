@@ -36,10 +36,10 @@ module PayPal
         }
 
         PERIOD = {
-          "Month"  => :monthly,
-          "Weekly" => :weekly,
-          "Year"   => :yearly,
-          "Day"    => :daily
+          "Month" => :monthly,
+          "Week"  => :weekly,
+          "Year"  => :yearly,
+          "Day"   => :daily
         }
 
         def active?
