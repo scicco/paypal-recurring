@@ -49,6 +49,11 @@ module PayPal
         :other    => "Other"
       }
 
+      SOLUTION_TYPES = {
+        :sole => "Sole",
+        :mark => "Mark"
+      }
+
       ATTRIBUTES = {
         :action                => "ACTION",
         :amount                => ["PAYMENTREQUEST_0_AMT", "AMT"],
@@ -82,6 +87,7 @@ module PayPal
         :signature             => "SIGNATURE",
         :start_at              => "PROFILESTARTDATE",
         :token                 => "TOKEN",
+        :solution_type         => "SOLUTIONTYPE",
         :transaction_id        => "TRANSACTIONID",
         :trial_amount          => "TRIALAMT",
         :trial_frequency       => "TRIALBILLINGFREQUENCY",
@@ -195,6 +201,10 @@ module PayPal
 
       def build_action(value) # :nodoc:
         ACTIONS.fetch(value.to_sym, value) if value
+      end
+
+      def build_solution_type(value) # :nodoc:
+        SOLUTION_TYPES.fetch(value.to_sym, value) if value
       end
 
       def build_initial_amount_action(value) # :nodoc:

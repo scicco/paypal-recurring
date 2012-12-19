@@ -20,6 +20,7 @@ module PayPal
       attr_accessor :reference
       attr_accessor :refund_type
       attr_accessor :return_url
+      attr_accessor :solution_type
       attr_accessor :start_at
       attr_accessor :token
       attr_accessor :transaction_id
@@ -68,7 +69,8 @@ module PayPal
           :item_category,
           :item_name,
           :item_amount,
-          :item_quantity
+          :item_quantity,
+          :solution_type
         ).merge(
           :payment_action => "Authorization",
           :no_shipping => 1,
