@@ -2,6 +2,7 @@ module PayPal
   module Recurring
     class Base
       attr_accessor :amount
+      attr_accessor :billing_type
       attr_accessor :cancel_url
       attr_accessor :currency
       attr_accessor :description
@@ -70,11 +71,11 @@ module PayPal
           :item_name,
           :item_amount,
           :item_quantity,
-          :solution_type
+          :solution_type,
+          :billing_type
         ).merge(
           :payment_action => "Authorization",
           :no_shipping => 1,
-          :L_BILLINGTYPE0 => "RecurringPayments"
         )
 
         request.run(:checkout, params)

@@ -54,6 +54,12 @@ module PayPal
         :mark => "Mark"
       }
 
+      BILLING_TYPES = {
+        :merchant  => "MerchantInitiatedBilling",
+        :recurring => "RecurringPayments",
+        :single    => "MerchantInitiatedBillingSingleAgreement"
+      }
+
       ATTRIBUTES = {
         :action                => "ACTION",
         :amount                => ["PAYMENTREQUEST_0_AMT", "AMT"],
@@ -159,10 +165,11 @@ module PayPal
 
       def default_params
         {
-          :username    => PayPal::Recurring.username,
-          :password    => PayPal::Recurring.password,
-          :signature   => PayPal::Recurring.signature,
-          :version     => PayPal::Recurring.api_version
+          :billing_type => :recurring,
+          :username     => PayPal::Recurring.username,
+          :password     => PayPal::Recurring.password,
+          :signature    => PayPal::Recurring.signature,
+          :version      => PayPal::Recurring.api_version
         }
       end
 
@@ -205,6 +212,10 @@ module PayPal
 
       def build_solution_type(value) # :nodoc:
         SOLUTION_TYPES.fetch(value.to_sym, value) if value
+      end
+
+      def build_billing_type(value) # :nodoc:
+        BILLING_TYPES.fetch(value.to_sym, value) if value
       end
 
       def build_initial_amount_action(value) # :nodoc:
